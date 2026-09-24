@@ -1,5 +1,5 @@
-/* 车间设备管理 - Service Worker v2.0 */
-const CACHE = 'equip-v20';
+/* 车间设备管理 - Service Worker v2.1 */
+const CACHE = 'equip-v21';
 const ASSETS = [
   './',
   './index.html',
