@@ -1,12 +1,12 @@
-/* 车间设备管理 - Service Worker v1.7 */
-const CACHE = 'equip-v17';
+/* 车间设备管理 - Service Worker v1.9 */
+const CACHE = 'equip-v19';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
+  './icon-180.png',
   './icon-192.png',
-  './icon-512.png',
-  './icon-180.png'
+  './icon-512.png'
 ];
 
 self.addEventListener('install', e => {
@@ -30,7 +30,6 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
 
-  /* 首页/导航请求：先网络，失败回退缓存 */
   if (req.mode === 'navigate' || req.destination === 'document') {
     e.respondWith(
       fetch(req).then(res => {
@@ -42,7 +41,6 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  /* 静态资源：缓存优先 */
   e.respondWith(
     caches.match(req).then(cached => {
       if (cached) return cached;
